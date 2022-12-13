@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Strona główna
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li class="current"><a href="#">Strona główna</a></li>
+    	<li><a href="">Wypożycz</a></li>
+    	<li><a href="">Oferta</a></li>
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>           
+            	<li><a href="#">Zaloguj</a></li>
+            	<li><a href="#">Zarejestruj</a></li>
+        	</ul>
+    	</li>
+
+	</ui:define>
+	
+	<ui:define name="content">
+		<div id="banner.header">
+			<h:graphicImage library="template" name="images/banner.jpg"/>					
+		</div>
+
+
+	<div class="wrapper style1">
+    	<div class="container">
+        	<div class="row gtr-200">
+            	<div class="col-4 col-12-narrower">
+                	<div class="box highlight">
+                    	<i class="icon solid major fa-paper-plane"></i>
+                    	<h3>BRAK LIMITU KILOMETRÓW</h3>
+                	</div>
+            	</div>
+            	<div class="col-4 col-12-narrower">
+                	<div class="box highlight">
+                    	<i class="icon solid major fa-pencil-alt"></i>
+                    	<h3>NAJTAŃSZY WYNAJEM W KRAJU</h3>  
+                	</div>
+            	</div>
+            	<div class="col-4 col-12-narrower">
+                	<div class="box highlight">
+                    	<i class="icon solid major fa-wrench"></i>
+                    	<h3>OFERUJEMY TYLKO NAJSZYBSZE SAMOCHODY</h3>
+                	</div>
+            	</div>
+        	</div>
+    	</div>
+	</div>
+
+	<div class="wrapper style2">
+    	<div class="container">
+        	<header class="major">
+            	<h2>Wypożyczalnia samochodów Cars4Rent to świetny wybór</h2>
+            	<p>Przekonaj się sam!</p>
+        	</header>
+    	</div>
+	</div> 
+
+	<div class="wrapper style1">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-6 col-12-narrower">
+                	<div class="box post">
+                    	<a href="#" class="image left"><h:graphicImage library="template" name="images/toyota-yaris-gr-01.PNG"/></a>
+                    	<div class="inner">
+                        	<h3>Poszukujesz sprawdzonego pojazdu? Przejrzyj naszą ofertę!</h3>
+                        	<p>Nasze samochody pozyskujemy tylko od zaufanych dostawców.</p>
+                    	</div>
+                	</div>
+            	</div>
+            	<div class="col-6 col-12-narrower">
+                	<div class="box post">
+                    	<a href="#" class="image left"><h:graphicImage library="template" name="images/bmw-02.jpg"/></a>
+                    	<div class="inner">
+                        	<h3>Auta premium w Cars4Rent</h3>
+                        	<p>Zapoznaj się z szeroką gamą samochodów klasy PREMIUM!</p>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+        	<div class="row">
+            	<div class="col-6 col-12-narrower">
+                	<div class="box post">
+                    	<a href="#" class="image left"><h:graphicImage library="template" name="images/wynajem-03.jpg"/></a>
+                    	<div class="inner">
+                        	<h3>Wynajem samochodu w RacingCars</h3>
+                        	<p>Nasi klienci mają możliwość złożenia zamówienia online, łącznie z opłaceniem rezerwacji.
+                        	Oferujemy także rezerwacje drogą telefoniczną lub w jednej z naszych placówek.
+                        	</p>
+                    	</div>
+                	</div>
+            	</div>
+            	<div class="col-6 col-12-narrower">
+                	<div class="box post">
+                    	<a href="#" class="image left"><h:graphicImage library="template" name="images/low-price-04.PNG"/></a>
+                    	<div class="inner">
+                        	<h3>Gwarancja najniższej ceny</h3>
+                        	<p>Oferujemy atrakcyjne warunki najmu za najniższą cenę.
+                        	Nie dość, że oferujemy niskie ceny, 
+                        	to każde auto otrzymasz wraz z ubezpieczeniem AC, OC, NW.
+                        	</p>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+    	</div>
+	</div>
+
+	<div id="cta" class="wrapper style3">
+		<div class="container">
+			<header>
+				<h2>Oferujemy rezerwacje samochodu online!</h2>
+				<a href="{$conf->action_url}rent_page" class="button">Sprawdź</a>
+			</header>
+		</div>
+	</div>
+	
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>
