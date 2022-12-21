@@ -21,22 +21,31 @@
 	<ui:define name="nav-menu">
 	
 		<li class="current"><a href="#">Strona główna</a></li>
-    	<li><a href="">Wypożycz</a></li>
-    	<li><a href="">Oferta</a></li>
+    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
     	<li>
         	<a href="#">Rejestracja</a>
-        	<ul>           
-            	<li><a href="#">Zaloguj</a></li>
-            	<li><a href="#">Zarejestruj</a></li>
+        	<ul>                       	
+				<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
         	</ul>
     	</li>
+    	  	
 
 	</ui:define>
 	
 	<ui:define name="content">
-		<div id="banner.header">
-			<h:graphicImage library="template" name="images/banner.jpg"/>					
-		</div>
+ 				
+		<section id="banner">
+    		<header>
+        
+    		</header>
+		</section>
 
 
 	<div class="wrapper style1">
@@ -127,7 +136,7 @@
 		<div class="container">
 			<header>
 				<h2>Oferujemy rezerwacje samochodu online!</h2>
-				<a href="{$conf->action_url}rent_page" class="button">Sprawdź</a>
+				<a href="/Cars4rent/pages/rent/rent.xhtml" class="button">Sprawdź</a>
 			</header>
 		</div>
 	</div>

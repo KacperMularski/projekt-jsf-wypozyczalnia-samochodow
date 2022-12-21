@@ -31,6 +31,19 @@ public class KontoDAO {
 		return em.find(Konto.class, id);
 	}
 	
+	public Konto getLoginData(String login, String haslo) {
+		
+		Query query = em.createQuery("SELECT u FROM Konto u WHERE u.login like :login AND u.haslo LIKE :haslo");
+        query.setParameter("login", login);
+        query.setParameter("haslo", haslo);
+
+        try {
+            return (Konto) query.getResultList().get(0);
+        } catch (Exception e) {    }
+
+        return null;
+	}
+	
 	public List<Konto> getFullList() {
 		List<Konto> list = null;
 
