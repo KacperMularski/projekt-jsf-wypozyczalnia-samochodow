@@ -44,6 +44,19 @@ public class KontoDAO {
         return null;
 	}
 	
+	public Konto checkRegisterData(String login, String email) {
+		
+		Query query = em.createQuery("SELECT u FROM Konto u WHERE u.login like :login OR u.email LIKE :email");		
+        query.setParameter("login", login);
+        query.setParameter("email", email);
+
+        try {
+            return (Konto) query.getResultList().get(0);
+        } catch (Exception e) {    }
+
+        return null;
+	}
+	
 	public List<Konto> getFullList() {
 		List<Konto> list = null;
 

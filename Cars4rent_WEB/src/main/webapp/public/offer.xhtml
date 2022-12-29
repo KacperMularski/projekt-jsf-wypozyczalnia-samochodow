@@ -31,7 +31,7 @@
             	</li>
             	
             	<li>
-            		<h:link value="Zarejestruj" outcome="/pages/register?faces-redirect=true" />
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
             	</li>
           	</ul>
         </li>
@@ -41,9 +41,44 @@
 	
 	<ui:define name="content">					
 		
-		<h1> Nasza oferta </h1>	
-		<h2>Strona w budowie</h2>
-		<h3>Dostęp PUBLIC</h3>
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+								<article>
+									<header>
+										<h2>Samochody z naszej oferty</h2>
+										<!--     <b>Strona: {$offset}</b>        -->
+									</header>
+
+                                   <br/>
+                                     <ui:repeat var="car" value="#{offerListBB.list}" varStatus="status">
+
+                                        
+                                        <div class="imgBorder">
+                                        
+                                        
+                                        <h:graphicImage library="template" name="cars_images/#{car.imgUrl}"/>
+                                        
+                                        <ul>
+                                        <h1><h:outputText value="#{car.marka}" /><h:outputText value=" " /><h:outputText value="#{car.model}" /></h1>                                       
+                                        <li><i class="fa-solid fa-rocket"></i> <h:outputText value="#{car.pojSilnika}" />cm<sup>3</sup> </li>
+                                        <li><i class="fa-solid fa-gas-pump"></i> <h:outputText value="#{car.rodzPaliwa}" /> </li>
+                                        <li><i class="fa-solid fa-gears"></i> <h:outputText value="#{car.skrzynia}" /> </li>
+                                        <li><i class="fa-solid fa-people-group"></i> Miejsca: <h:outputText value="#{car.liczbaMiejsc}" /> </li>
+                                        <h2> Cena za dobę: <h:outputText value="#{car.cenaDoba}" />zł </h2>
+
+                                        </ul>
+                                        
+                                        </div>                                        
+                                        <br/>
+                    
+                                   </ui:repeat> 
+                                    
+                                </article>
+
+                        </div>
+                    </div>
+    </section>
 	
 	</ui:define>
 	

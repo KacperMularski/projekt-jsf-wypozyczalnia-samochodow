@@ -48,9 +48,10 @@
 								
 									<div class="col-6 col-12-mobilep">													
 							    	
-										<h:inputText id="login" value="#{loginBB.login}" required="true" requiredMessage="podaj login"
-										placeholder="Login" />
+										<h:inputText id="login" value="#{loginBB.login}" required="true" requiredMessage="podaj login"/>
+										<p:watermark for="login" value="Login"  id="placeholder1"  />
 										<p:message for="login"/>	
+										
 																					
 									</div>
 									
@@ -59,6 +60,7 @@
 													
 										<h:inputSecret id="pass" value="#{loginBB.haslo}"
 										required="true"	requiredMessage="podaj hasło" placeholder="Hasło"/>
+										<p:watermark for="pass" value="Hasło"  id="placeholder2"  />
 										<p:message for="pass"/>	
 										
 									
@@ -67,7 +69,7 @@
 									<div class="col-12">
 									
 										<ul class="actions">
-											<h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
+											<li><h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" /></li>
 										</ul>
 										
 									</div>

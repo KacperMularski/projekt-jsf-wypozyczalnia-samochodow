@@ -37,9 +37,121 @@
 	
 	<ui:define name="content">					
 		
-		<h1> Rejestracja </h1>	
-		<h2>Strona w budowie</h2>
-		<h3>Dostęp PUBLIC</h3>
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Rejestracja</h2>
+										
+									</header>
+
+									<section class="col-6 col-12-narrower">
+										
+										<h:form>
+											<div class="row gtr-50">
+												<div class="col-6 col-12-mobilep">
+													
+													<h:inputText id="login" value="#{registerBB.login}" required="true" requiredMessage="podaj login"/>
+													<p:watermark for="login" value="Login"  id="placeholder1"  />
+													<p:message for="login"/>
+													
+												</div>
+
+												<div class="col-6 col-12-mobilep">
+													
+													<h:inputText id="email" value="#{registerBB.email}" required="true" requiredMessage="podaj e-mail"/>
+													<p:watermark for="email" value="E-mail"  id="placeholder2"  />
+													<p:message for="email"/>
+													
+												</div>
+											
+											
+												<div class="col-6 col-12-mobilep">
+												
+													<h:inputSecret id="pass" value="#{registerBB.haslo}"
+													required="true"	requiredMessage="podaj hasło"/>
+													<p:watermark for="pass" value="Hasło"  id="placeholder3"  />
+													<p:message for="pass"/>	
+													
+												</div>
+											
+											
+												<div class="col-6 col-12-mobilep">
+												
+													<h:inputSecret id="pass_rep" value="#{registerBB.haslo_rep}"
+													required="true"	requiredMessage="podaj hasło ponownie"/>
+													<p:watermark for="pass_rep" value="Powtórz hasło"  id="placeholder4"  />
+													<p:message for="pass_rep"/>
+													
+												</div>
+												
+												<div class="col-6 col-12-mobilep">
+												
+													<h:inputText id="imie" value="#{registerBB.imie}" required="true" requiredMessage="podaj imię"/>
+													<p:watermark for="imie" value="Imię"  id="placeholder5"  />
+													<p:message for="imie"/>
+													
+												</div>
+												<div class="col-6 col-12-mobilep">
+												
+													<h:inputText id="nazwisko" value="#{registerBB.nazwisko}" required="true" requiredMessage="podaj nazwisko"/>
+													<p:watermark for="nazwisko" value="Nazwisko"  id="placeholder6"  />
+													<p:message for="nazwisko"/>
+													
+												</div>
+											
+												<div class="col-6 col-12-mobilep">
+												
+													<h:inputText id="nr_pr_jazdy" value="#{registerBB.nr_pr_jazdy}" required="true" requiredMessage="podaj numer prawa jazdy"/>
+													<p:watermark for="nr_pr_jazdy" value="Numer prawa jazdy"  id="placeholder7"  />
+													<p:message for="nr_pr_jazdy"/>	
+
+												</div>
+
+                                                <div class="col-6 col-12-mobilep">
+                                                
+                                                	<h:inputText id="nr_tel" value="#{registerBB.nr_tel}" required="true" requiredMessage="podaj numer telefonu"/>
+													<p:watermark for="nr_tel" value="Numer telefonu"  id="placeholder8"  />
+													<p:message for="nr_tel"/>
+														
+												</div>
+
+                                                <div class="col-6 col-12-mobilep">
+                                                
+													<h:inputText id="data_ur" value="#{registerBB.data_ur}" required="true" requiredMessage="podaj datę urodzenia" converterMessage="Proszę wprowadzić poprawną datę (yyyy-mm-dd)">  
+  														 <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd"/>  
+													</h:inputText>
+													<p:watermark for="data_ur" value="Data urodzenia"  id="placeholder9"  />
+													<p:message for="data_ur"/>	
+                                                    
+												</div>
+												
+												<h:outputText value="#{registerBB.data_ur}"/> 
+											
+												<div class="col-12">
+													<ul class="actions">
+														<li><h:commandButton value="Zarejestruj" action="#{registerBB.doRegister()}" update="msg" /></li>
+													</ul>
+												</div>
+																				
+											</div>
+											
+											
+											<p:messages id="msgs" closable="true">
+            									<p:autoUpdate/>
+        									</p:messages>
+        									
+										</h:form>										
+
+									</section>
+
+								</article>
+
+						</div>
+					</div>
+				</section>
 	
 	</ui:define>
 	
