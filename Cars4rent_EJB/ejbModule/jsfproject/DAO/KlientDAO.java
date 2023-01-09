@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import jsfproject.entities.Klient;
+import jsfproject.entities.Konto;
 
 @Stateless
 
@@ -44,6 +45,10 @@ public class KlientDAO {
 		}
 
 		return list;
+	}
+	
+	public Klient getClientInfo(Object konto) {		
+		return em.find(Klient.class, konto);	
 	}
 	
 	

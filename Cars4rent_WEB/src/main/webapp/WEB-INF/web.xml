@@ -38,6 +38,7 @@
 /pages/rent : admin, user;
 /pages/admin : admin;
 /pages/register : PUBLIC;
+/pages/profile : admin, user;
 
 			</param-value>
 		</init-param>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Wypożycz
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><a href="#">Wypożycz</a></li>   	
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>           
+            	<li><a href="#">Zarejestruj</a></li>
+        	</ul>
+    	</li>
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Dane konta</h2> <br/>
+										
+									</header>                                  
+
+                                    <table class="pure-table pure-table-bordered">
+
+										<thead>
+											<tr> 
+												<td colspan="3" align="center">
+													<a href="" class="button">Edytuj</a> 
+													<a href="" class="button">Zmień hasło</a>
+													<a href="" class="button">Wypożyczenia</a>
+												</td> 
+											</tr>
+										</thead>
+
+                                        <tbody>
+                                        	<c:set var = "user" scope="session" value="user"/>
+                                        	<c:set var = "admin" scope="session" value="admin"/>
+                                        	
+                                        	<c:if test="#{remoteClient.details.rola eq user}">
+	                                            <tr><td><h3>Login:</h3></td> <td><b><h:outputText value="#{remoteClient.details.login}"/></b></td></tr>                                       
+	                                            <tr class="pure-table-odd"><td><h3>E-mail:</h3></td> <td><b><h:outputText value="#{remoteClient.details.email}"/></b></td></tr>
+	                                            <tr><td><h3>Imie:</h3></td><td> <b><h:outputText value="#{profileInfoBB.klient.imie}"/></b></td></tr>
+	                                            <tr class="pure-table-odd"><td><h3>Nazwisko:</h3></td><td> <b><h:outputText value="#{profileInfoBB.klient.nazwisko}"/></b></td></tr>
+	                                            <tr><td><h3>Data urodzenia:</h3></td><td>  <b><h:outputText value="#{profileInfoBB.klient.dataUr}"/></b></td></tr>
+	                                            <tr class="pure-table-odd"><td><h3>Numer prawa jazdy:</h3></td><td>  <b><h:outputText value="#{profileInfoBB.klient.nrPrJazdy}"/></b></td></tr>
+	                                            <tr><td><h3>Numer telefonu:</h3></td><td><b><h:outputText value="#{profileInfoBB.klient.nrTel}"/></b></td></tr>
+                                            </c:if>
+                                            
+                                            
+                                        	
+                                        	<c:if test="#{remoteClient.details.rola eq admin}">
+	                                           <tr><td><h3>Login:</h3></td> <td><b><h:outputText value="#{remoteClient.details.login}"/></b></td></tr>                                       
+	                                           <tr class="pure-table-odd"><td><h3>E-mail:</h3></td> <td><b><h:outputText value="#{remoteClient.details.email}"/></b></td></tr> 
+	                                           <tr><td><h3>Imie:</h3></td><td> <b><h:outputText value="#{profileInfoBB.pracownik.imie}"/></b></td></tr>
+                                            </c:if>
+                                       </tbody>
+
+                                    </table>
+                                    
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

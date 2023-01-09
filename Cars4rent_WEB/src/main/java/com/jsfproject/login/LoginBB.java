@@ -56,7 +56,9 @@ public class LoginBB {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Niepoprawny login lub hasło", null));
 			return PAGE_STAY_AT_THE_SAME;
+			
 		}
+				
 
 		// 3. if logged in: get User roles, save in RemoteClient and store it in session
 		
@@ -68,7 +70,10 @@ public class LoginBB {
 		//store RemoteClient with request info in session (needed for SecurityFilter)
 		HttpServletRequest request = (HttpServletRequest) ctx.getExternalContext().getRequest();
 		client.store(request);
-
+		
+		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);	
+		session.setAttribute("id", konto.getIdKonta());
+		
 		// and enter the system (now SecurityFilter will pass the request)
 		return PAGE_MAIN;
 	}

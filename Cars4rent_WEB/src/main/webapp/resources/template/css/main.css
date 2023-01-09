@@ -1,3 +1,4 @@
+
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 
@@ -134,20 +135,20 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: inherit;
-		font-weight: 600;
-		line-height: 1.75em;
-		margin-bottom: 1em;
+		color: inherit !important;
+		font-weight: 600 !important;
+		line-height: 1.75em !important;
+		margin-bottom: 1em !important;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-			color: inherit;
-			text-decoration: none;
+			color: inherit !important;
+			text-decoration: none !important;
 		}
 
 		h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {
-			font-style: normal;
-			font-weight: 300;
+			font-style: normal !important;
+			font-weight: 300 !important;
 		}
 
 	h2 {
@@ -2543,14 +2544,14 @@ input, select, textarea {
 	}
 
 		#header h1 {
-			padding: 0 0 2.75em 0;
-			margin: 0;
+			padding: 0 0 2.75em 0 !important;
+			margin: 0 !important;			
 		}
 
 			#header h1 a {
-				font-size: 1.5em;
-				letter-spacing: -0.025em;
-				border: 0;
+				font-size: 1.5em !important;
+				letter-spacing: -0.025em !important;
+				border: 0 !important;
 			}
 
 	#nav {

@@ -43,7 +43,7 @@ public class KontoDAO {
 
         return null;
 	}
-	
+		
 	public Konto checkRegisterData(String login, String email) {
 		
 		Query query = em.createQuery("SELECT u FROM Konto u WHERE u.login like :login OR u.email LIKE :email");		

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import jsfproject.entities.Klient;
 import jsfproject.entities.Pracownik; 
 
 @Stateless
@@ -34,7 +35,7 @@ public class PracownikDAO {
 	public List<Pracownik> getFullList() {
 		List<Pracownik> list = null;
 
-		Query query = em.createQuery("select p from Konto p");
+		Query query = em.createQuery("select p from Pracownik p");
 
 		try {
 			list = query.getResultList();
@@ -43,5 +44,9 @@ public class PracownikDAO {
 		}
 
 		return list;
+	}
+	
+	public Pracownik getEmployeeInfo(Object placowka) {		
+		return em.find(Pracownik.class, placowka);	
 	}
 }
