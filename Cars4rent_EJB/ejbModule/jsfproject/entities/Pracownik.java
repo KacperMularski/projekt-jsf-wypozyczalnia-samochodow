@@ -47,13 +47,13 @@ public class Pracownik implements Serializable {
 	@Lob
 	private String uwagi;
 
-	//bi-directional many-to-one association to Konto
-	@ManyToOne
-	private Konto konto;
-
 	//bi-directional many-to-one association to Placowka
 	@ManyToOne
 	private Placowka placowka;
+
+	//bi-directional one-to-one association to Konto
+	@OneToOne
+	private Konto konto;
 
 	public Pracownik() {
 	}
@@ -146,20 +146,20 @@ public class Pracownik implements Serializable {
 		this.uwagi = uwagi;
 	}
 
-	public Konto getKonto() {
-		return this.konto;
-	}
-
-	public void setKonto(Konto konto) {
-		this.konto = konto;
-	}
-
 	public Placowka getPlacowka() {
 		return this.placowka;
 	}
 
 	public void setPlacowka(Placowka placowka) {
 		this.placowka = placowka;
+	}
+
+	public Konto getKonto() {
+		return this.konto;
+	}
+
+	public void setKonto(Konto konto) {
+		this.konto = konto;
 	}
 
 }

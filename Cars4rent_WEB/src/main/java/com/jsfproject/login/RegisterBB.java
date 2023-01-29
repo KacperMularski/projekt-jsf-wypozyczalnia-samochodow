@@ -1,9 +1,6 @@
 package com.jsfproject.login;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -28,8 +25,8 @@ public class RegisterBB {
 	private String imie;
 	private String nazwisko;
 	private Date data_ur;
-	private String nr_pr_jazdy;
-	private String nr_tel;
+	private Long nr_pr_jazdy;
+	private Long nr_tel;
 	
 	private Konto registerCheck;
 	
@@ -75,16 +72,16 @@ public class RegisterBB {
 	public void setData_ur(Date data_ur) {
 		this.data_ur = data_ur;
 	}
-	public String getNr_pr_jazdy() {
+	public Long getNr_pr_jazdy() {
 		return nr_pr_jazdy;
 	}
-	public void setNr_pr_jazdy(String nr_pr_jazdy) {
+	public void setNr_pr_jazdy(Long nr_pr_jazdy) {
 		this.nr_pr_jazdy = nr_pr_jazdy;
 	}
-	public String getNr_tel() {
+	public Long getNr_tel() {
 		return nr_tel;
 	}
-	public void setNr_tel(String nr_tel) {
+	public void setNr_tel(Long nr_tel) {
 		this.nr_tel = nr_tel;
 	}
 	
@@ -145,16 +142,19 @@ public class RegisterBB {
 						
 			Klient klient = new Klient();
 			
+			String nr_pr_jazdyS = Long.toString(nr_pr_jazdy); 			
+			String nr_telS = Long.toString(nr_tel);
+						
 			klient.setKonto(konto);
 			klient.setImie(imie);
 			klient.setNazwisko(nazwisko);
 			klient.setDataUr(data_ur);
-			klient.setNrPrJazdy(nr_pr_jazdy);
-			klient.setNrTel("+48" + nr_tel);
+			klient.setNrPrJazdy(nr_pr_jazdyS);
+			klient.setNrTel("+48" + nr_telS);
 			klient.setAktywny("tak");
 			klient.setUwagi("Brak");
 			
-			klientDAO.insert(klient);
+			klientDAO.insert(klient);		
 			
 		} catch (Exception e) {
 			e.printStackTrace();

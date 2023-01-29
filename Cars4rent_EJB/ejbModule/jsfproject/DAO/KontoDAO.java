@@ -57,6 +57,19 @@ public class KontoDAO {
         return null;
 	}
 	
+	public Konto checkPasswordEdit(Integer id, String haslo) {
+		
+		Query query = em.createQuery("SELECT u FROM Konto u WHERE u.id = :id AND u.haslo LIKE :haslo");		
+        query.setParameter("id", id);
+        query.setParameter("haslo", haslo);
+
+        try {
+            return (Konto) query.getResultList().get(0);
+        } catch (Exception e) {    }
+
+        return null;
+	}
+	
 	public List<Konto> getFullList() {
 		List<Konto> list = null;
 

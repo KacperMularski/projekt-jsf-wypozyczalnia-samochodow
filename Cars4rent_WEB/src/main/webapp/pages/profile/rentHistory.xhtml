@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Wypożycz
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li> 
+    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>  	
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>           
+            	<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
+        	</ul>
+    	</li>
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Historia wypożyczeń</h2> <br/>
+										
+									</header>                                  
+								
+								<p:messages id="msgs" />
+																							
+								<table class="pure-table pure-table-bordered">
+
+										<thead>
+											<tr> 
+												<td>
+                                                    <p> Marka </p>
+												</td> 
+
+                                                <td>
+                                                    <p> Model </p>
+												</td> 
+
+                                                <td>
+                                                    <p> Data wypożyczenia </p>
+												</td> 
+
+                                                <td>
+                                                    <p> Data zwrotu </p>
+												</td> 
+
+                                                <td>
+                                                    <p> Wartość </p>
+												</td> 
+											</tr>
+										</thead>
+																														
+										<tbody>
+										
+										<ui:repeat var="rent" value="#{profileRentHistoryBB.list}" varStatus="status">
+											<tr>
+												<td><h:outputText value="#{rent[1].marka}"/></td>
+												<td><h:outputText value="#{rent[1].model}"/></td>
+												<td><h:outputText value="#{rent[0].dataWyp}"/></td>
+												<td><h:outputText value="#{rent[0].dataZw}"/></td>
+												<td><h:outputText value="#{rent[0].wartWyp} zł"/></td>
+											</tr>
+										
+										</ui:repeat>
+										
+										</tbody>
+																														
+								</table>							
+																																														
+								</article>	
+									
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

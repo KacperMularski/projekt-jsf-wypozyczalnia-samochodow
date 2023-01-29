@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import jsfproject.entities.Klient;
+import jsfproject.entities.Pojazd;
 import jsfproject.entities.Wypozyczenie; 
 
 @Stateless
@@ -35,6 +37,22 @@ public class WypozyczenieDAO {
 		List<Wypozyczenie> list = null;
 
 		Query query = em.createQuery("select p from Wypozyczenie p");
+
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public List<Wypozyczenie> getFullListById(Object klient) {
+		List<Wypozyczenie> list = null;
+
+		Query query = em.createQuery("select a,b from Wypozyczenie a JOIN a.pojazd b where a.klient LIKE :klient");
+		
+		query.setParameter("klient", klient);
 
 		try {
 			list = query.getResultList();

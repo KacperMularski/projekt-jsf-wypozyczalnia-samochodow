@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.time.Year;
 
 
 /**
@@ -42,9 +43,9 @@ public class Pojazd implements Serializable {
 	@Column(name="rodz_paliwa")
 	private String rodzPaliwa;
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name="rok_prod")
-	private Date rokProd;
+	private String rokProd;
 
 	private String skrzynia;
 
@@ -53,7 +54,7 @@ public class Pojazd implements Serializable {
 
 	private String wypozyczony;
 
-	//bi-directional many-to-one association to Placowka
+	//bi-directional many-to-one association to Placowka	
 	@ManyToOne
 	private Placowka placowka;
 
@@ -136,11 +137,11 @@ public class Pojazd implements Serializable {
 		this.rodzPaliwa = rodzPaliwa;
 	}
 
-	public Date getRokProd() {
+	public String getRokProd() {
 		return this.rokProd;
 	}
 
-	public void setRokProd(Date rokProd) {
+	public void setRokProd(String rokProd) {
 		this.rokProd = rokProd;
 	}
 

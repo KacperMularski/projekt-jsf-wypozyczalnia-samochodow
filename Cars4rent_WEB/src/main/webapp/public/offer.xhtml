@@ -46,39 +46,38 @@
 						<div id="content">
 								<article>
 									<header>
-										<h2>Samochody z naszej oferty</h2>
-										<!--     <b>Strona: {$offset}</b>        -->
+										<h2>Samochody z naszej oferty</h2>										
 									</header>
 
                                    <br/>
-                                     <ui:repeat var="car" value="#{offerListBB.list}" varStatus="status">
-
+                                   
+                                     <p:dataTable var="car" value="#{offerListBB.lazyModelPojazd}" varStatus="status"
+                                     paginator="true" rows="5" 
+                                     paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} {PageLinks}"
+                                     lazy="true"> 
+                                                                                                                                                              
+                                        <p:column>
+                                        	<div class="imgBorder">
+                                        		<h:graphicImage library="template" name="cars_images/#{car.imgUrl}"/>
                                         
-                                        <div class="imgBorder">
-                                        
-                                        
-                                        <h:graphicImage library="template" name="cars_images/#{car.imgUrl}"/>
-                                        
-                                        <ul>
-                                        <h1><h:outputText value="#{car.marka}" /><h:outputText value=" " /><h:outputText value="#{car.model}" /></h1>                                       
-                                        <li><i class="fa-solid fa-rocket"></i> <h:outputText value="#{car.pojSilnika}" />cm<sup>3</sup> </li>
-                                        <li><i class="fa-solid fa-gas-pump"></i> <h:outputText value="#{car.rodzPaliwa}" /> </li>
-                                        <li><i class="fa-solid fa-gears"></i> <h:outputText value="#{car.skrzynia}" /> </li>
-                                        <li><i class="fa-solid fa-people-group"></i> Miejsca: <h:outputText value="#{car.liczbaMiejsc}" /> </li>
-                                        <h2> Cena za dobę: <h:outputText value="#{car.cenaDoba}" />zł </h2>
-
-                                        </ul>
-                                        
-                                        </div>                                        
-                                        <br/>
-                    
-                                   </ui:repeat> 
+                                        		<ul>
+                                        		<h1><h:outputText value="#{car.marka}" /><h:outputText value=" " /><h:outputText value="#{car.model}" /></h1>                                     
+                                        		<li><i class="fa-solid fa-rocket"></i> <h:outputText value="#{car.pojSilnika}" />cm<sup>3</sup> </li> 
+                                        		<li><i class="fa-solid fa-gas-pump"></i> <h:outputText value="#{car.rodzPaliwa}" /> </li> 
+                                        		<li><i class="fa-solid fa-gears"></i> <h:outputText value="#{car.skrzynia}" /> </li> 
+                                        		<li><i class="fa-solid fa-people-group"></i> Miejsca: <h:outputText value="#{car.liczbaMiejsc}" /> </li> 
+                                        		<h2> Cena za dobę: <h:outputText value="#{car.cenaDoba}" />zł </h2> 
+                                        		</ul>
+                                        	</div>
+                                        </p:column>
+                                                                                                                                          
+                                   </p:dataTable> 
                                     
                                 </article>
 
                         </div>
                     </div>
-    </section>
+    	</section>
 	
 	</ui:define>
 	

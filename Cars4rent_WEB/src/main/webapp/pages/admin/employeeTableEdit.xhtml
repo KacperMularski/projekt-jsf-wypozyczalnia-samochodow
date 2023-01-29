@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<f:metadata>
+    <f:viewAction action="#{employeeEditBB.onLoad()}" />
+</f:metadata>
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Admin - Edytuj pracownika
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="Klient" outcome="/pages/admin/clientTableList?faces-redirect=true"/></li>     	
+     	<li><h:link value="Pracownik" outcome="/pages/admin/employeeTableList?faces-redirect=true" /></li>
+    	
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Edytuj pracownika</h2>										
+										
+									</header>  
+									
+								<section class="col-6 col-12-narrower">
+									<h:form rendered="#{employeeEditBB.pracownik != null}">
+										<div class="row gtr-50">
+											<div class="col-6 col-12-mobilep">
+											
+												<p:inputMask id="a-id-konta" value="#{employeeEditBB.pracownik.konto.idKonta}" required="true" 		
+												 requiredMessage="podaj id konta" label="Number" mask="9" validateMask="false">																								
+												</p:inputMask>	
+												<p:message for="a-id-konta"/>
+												<p:watermark for="a-id-konta" value="ID konta"  id="placeholder1"  />
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<p:inputMask id="a-id-placowka" value="#{employeeEditBB.pracownik.placowka.idPlacowki}" required="true" 
+												requiredMessage="podaj id placowki" label="Number" mask="9" validatorMessage="Dostępne są tylko placówki 1 - 5"
+                           						 validateMask="false">
+                           						 <f:validateLength minimum="1" maximum="5"/>
+                           						 </p:inputMask>												
+												<p:message for="a-id-placowka"/>
+												<p:watermark for="a-id-placowka" value="ID placowki"  id="placeholder2"  />
+													
+											</div>
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-imie" value="#{employeeEditBB.pracownik.imie}" required="true" requiredMessage="podaj imie"/>												
+												<p:message for="a-imie"/>
+												<p:watermark for="a-imie" value="imie"  id="placeholder3"  />
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-nazwisko" value="#{employeeEditBB.pracownik.nazwisko}" required="true" requiredMessage="podaj nazwisko"/>												
+												<p:message for="a-nazwisko"/>
+												<p:watermark for="a-nazwisko" value="nazwisko"  id="placeholder4"  />
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-data" value="#{employeeEditBB.pracownik.dataUr}" required="true" requiredMessage="podaj datę urodzenia"
+												converterMessage="niepoprawny format daty (np. 15-07-2018)">
+												<f:convertDateTime pattern="yyyy-MM-dd"/>	
+												</h:inputText>											
+												<p:message for="a-data"/>
+												<p:watermark for="a-data" value="data urodzenia"  id="placeholder5"  />
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-miasto" value="#{employeeEditBB.pracownik.miasto}" required="true" requiredMessage="podaj miasto"/>												
+												<p:message for="a-miasto"/>
+												<p:watermark for="a-miasto" value="miasto"  id="placeholder6"  />
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-ulica" value="#{employeeEditBB.pracownik.ulicaNrDomu}" required="true" requiredMessage="podaj ulicę/nr domu"/>												
+												<p:message for="a-ulica"/>
+												<p:watermark for="a-ulica" value="Ulica/Nr domu"  id="placeholder7"  />
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-kod" value="#{employeeEditBB.pracownik.kodPocz}" required="true" requiredMessage="podaj kod pocztowy"/>												
+												<p:message for="a-kod"/>
+												<p:watermark for="a-kod" value="Kod pocztowy"  id="placeholder8"  />
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-numer-tel" value="#{employeeEditBB.pracownik.nrTel}" required="true" requiredMessage="podaj numer telefonu"/>												
+												<p:message for="a-numer-tel"/>
+												<p:watermark for="a-numer-tel" value="nr telefonu"  id="placeholder9"  />	
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-aktywny" value="#{employeeEditBB.pracownik.aktywny}" required="true" requiredMessage="podaj czy aktywny"/>												
+												<p:message for="a-aktywny"/>
+												<p:watermark for="a-aktywny" value="Aktywny"  id="placeholder10"  />	
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-data-za" value="#{employeeEditBB.pracownik.dataZatrud}" required="true" requiredMessage="podaj datę zatrudnienia"
+													converterMessage="niepoprawny format daty (np.2018-06-25)">
+													<f:convertDateTime pattern="yyyy-MM-dd"/>	
+													</h:inputText>											
+													<p:message for="a-data-za"/>
+													<p:watermark for="a-data-za" value="Data zatrudnienia"  id="placeholder11"  />
+											</div>																																										
+											
+											<div class="col-12">
+													<ul class="actions">
+														<li>
+															<h:commandButton value="Zapisz" action="#{employeeEditBB.saveData()}" style="margin-right: 1em;">
+																<f:ajax execute="@form" render="msgs" />	
+															</h:commandButton>
+														</li>
+                                                        <li><h:button value="Anuluj" outcome="employeeTableList" /></li>
+													</ul>
+												</div>
+										</div>
+									</h:form>
+									
+									<p:messages id="msgs" closable="true">
+            									<p:autoUpdate/>
+        							</p:messages>
+        							
+								</section>								                                								
+									
+									
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

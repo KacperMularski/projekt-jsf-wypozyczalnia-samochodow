@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<f:metadata>
+    <f:viewAction action="#{clientEditBB.onLoad()}" />
+</f:metadata>
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Admin - Edytuj Klienta
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li class="current"><h:link value="Klient"/></li>   	   	
+     	<li><h:link value="Pracownik" outcome="/pages/admin/employeeTableList?faces-redirect=true" /></li>
+    	
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Edytuj klienta</h2>										
+										
+									</header>  
+									
+								<section class="col-6 col-12-narrower">
+									<h:form rendered="#{clientEditBB.klient != null}">
+										<div class="row gtr-50">
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-imie" value="#{clientEditBB.klient.imie}" required="true" requiredMessage="podaj imie"/>												
+												<p:message for="a-imie"/>
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-nazwisko" value="#{clientEditBB.klient.nazwisko}" required="true" requiredMessage="podaj nazwisko"/>												
+												<p:message for="a-nazwisko"/>
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-data" value="#{clientEditBB.klient.dataUr}" required="true" requiredMessage="podaj datę urodzenia"
+												converterMessage="niepoprawny format daty (np. 15-07-2018)">
+												<f:convertDateTime pattern="yyyy-MM-dd"/>	
+												</h:inputText>											
+												<p:message for="a-data"/>
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-numer-pr" value="#{clientEditBB.klient.nrPrJazdy}" required="true" requiredMessage="podaj nr prawa jazdy"/>												
+												<p:message for="a-numer-pr"/>	
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-numer-tel" value="#{clientEditBB.klient.nrTel}" required="true" requiredMessage="podaj numer telefonu"/>												
+												<p:message for="a-numer-tel"/>	
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-aktywny" value="#{clientEditBB.klient.aktywny}" required="true" requiredMessage="podaj czy aktywny"/>												
+												<p:message for="a-aktywny"/>	
+												
+											</div>
+											
+											<p:messages id="msgs" />
+											
+											<div class="col-12">
+													<ul class="actions">
+														<li>
+														<h:commandButton value="Zapisz" action="#{clientEditBB.saveData()}" style="margin-right: 1em;" >
+															<f:ajax execute="@form" render="msgs" />	
+														</h:commandButton>
+														</li>
+                                                        <li>
+                                                        	<h:button value="Anuluj" outcome="clientTableList" />
+                                                        </li>
+													</ul>
+												</div>
+										</div>
+									</h:form>
+								</section>								                                								
+									
+									
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

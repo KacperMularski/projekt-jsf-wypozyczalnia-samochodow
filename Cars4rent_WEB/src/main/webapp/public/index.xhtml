@@ -9,29 +9,29 @@
 <ui:composition template="/templates/main-template.xhtml">
 
 	<ui:define name="title">
-		Strona główna
+		#{txtMain.indexTitle}
 	</ui:define>
 	
 	<ui:define name="end">
-		Wszelkie prawa zastrzeżone
+		#{txtMain.footerRights}
 	</ui:define>
 	
 	
 	
 	<ui:define name="nav-menu">
 	
-		<li class="current"><a href="#">Strona główna</a></li>
-    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
-    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
+		<li class="current"><h:link value="#{txtMain.indexMenuMainPage}" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuRent}" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuOffer}" outcome="/public/offer?faces-redirect=true" /></li>
     	<li>
-        	<a href="#">Rejestracja</a>
+        	<a href="#">#{txtMain.indexMenuRegistration}</a>
         	<ul>                       	
 				<li>
-					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+					<h:link value="#{txtMain.indexMenuLogin}" outcome="/pages/login?faces-redirect=true" />
             	</li>
             	
             	<li>
-            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            		<h:link value="#{txtMain.indexMenuRegister}" outcome="/pages/register/register?faces-redirect=true" />
             	</li>
         	</ul>
     	</li>
@@ -54,19 +54,19 @@
             	<div class="col-4 col-12-narrower">
                 	<div class="box highlight">
                     	<i class="icon solid major fa-paper-plane"></i>
-                    	<h3>BRAK LIMITU KILOMETRÓW</h3>
+                    	<h3>#{txtMain.indexWrSt1_1}</h3>
                 	</div>
             	</div>
             	<div class="col-4 col-12-narrower">
                 	<div class="box highlight">
                     	<i class="icon solid major fa-pencil-alt"></i>
-                    	<h3>NAJTAŃSZY WYNAJEM W KRAJU</h3>  
+                    	<h3>#{txtMain.indexWrSt1_2}</h3>  
                 	</div>
             	</div>
             	<div class="col-4 col-12-narrower">
                 	<div class="box highlight">
                     	<i class="icon solid major fa-wrench"></i>
-                    	<h3>OFERUJEMY TYLKO NAJSZYBSZE SAMOCHODY</h3>
+                    	<h3>#{txtMain.indexWrSt1_3}</h3>
                 	</div>
             	</div>
         	</div>
@@ -76,8 +76,8 @@
 	<div class="wrapper style2">
     	<div class="container">
         	<header class="major">
-            	<h2>Wypożyczalnia samochodów Cars4Rent to świetny wybór</h2>
-            	<p>Przekonaj się sam!</p>
+            	<h2>#{txtMain.indexWrSt2_mr_1}</h2>
+            	<p>#{txtMain.indexWrSt2_mr_2}</p>
         	</header>
     	</div>
 	</div> 
@@ -89,8 +89,8 @@
                 	<div class="box post">
                     	<a href="#" class="image left"><h:graphicImage library="template" name="images/toyota-yaris-gr-01.PNG"/></a>
                     	<div class="inner">
-                        	<h3>Poszukujesz sprawdzonego pojazdu? Przejrzyj naszą ofertę!</h3>
-                        	<p>Nasze samochody pozyskujemy tylko od zaufanych dostawców.</p>
+                        	<h3>#{txtMain.indexWrSt1_im_1}</h3>
+                        	<p>#{txtMain.indexWrSt1_im_1p}</p>
                     	</div>
                 	</div>
             	</div>
@@ -98,8 +98,8 @@
                 	<div class="box post">
                     	<a href="#" class="image left"><h:graphicImage library="template" name="images/bmw-02.jpg"/></a>
                     	<div class="inner">
-                        	<h3>Auta premium w Cars4Rent</h3>
-                        	<p>Zapoznaj się z szeroką gamą samochodów klasy PREMIUM!</p>
+                        	<h3>#{txtMain.indexWrSt1_im_2}</h3>
+                        	<p>#{txtMain.indexWrSt1_im_2p}</p>
                     	</div>
                 	</div>
             	</div>
@@ -109,10 +109,8 @@
                 	<div class="box post">
                     	<a href="#" class="image left"><h:graphicImage library="template" name="images/wynajem-03.jpg"/></a>
                     	<div class="inner">
-                        	<h3>Wynajem samochodu w RacingCars</h3>
-                        	<p>Nasi klienci mają możliwość złożenia zamówienia online, łącznie z opłaceniem rezerwacji.
-                        	Oferujemy także rezerwacje drogą telefoniczną lub w jednej z naszych placówek.
-                        	</p>
+                        	<h3>#{txtMain.indexWrSt1_im_3}</h3>
+                        	<p>#{txtMain.indexWrSt1_im_3p}</p>
                     	</div>
                 	</div>
             	</div>
@@ -120,11 +118,8 @@
                 	<div class="box post">
                     	<a href="#" class="image left"><h:graphicImage library="template" name="images/low-price-04.PNG"/></a>
                     	<div class="inner">
-                        	<h3>Gwarancja najniższej ceny</h3>
-                        	<p>Oferujemy atrakcyjne warunki najmu za najniższą cenę.
-                        	Nie dość, że oferujemy niskie ceny, 
-                        	to każde auto otrzymasz wraz z ubezpieczeniem AC, OC, NW.
-                        	</p>
+                        	<h3>#{txtMain.indexWrSt1_im_4}</h3>
+                        	<p>#{txtMain.indexWrSt1_im_4p}</p>
                     	</div>
                 	</div>
             	</div>
@@ -135,8 +130,8 @@
 	<div id="cta" class="wrapper style3">
 		<div class="container">
 			<header>
-				<h2>Oferujemy rezerwacje samochodu online!</h2>
-				<a href="/Cars4rent/pages/rent/rent.xhtml" class="button">Sprawdź</a>
+				<h2>#{txtMain.indexWrSt3_1}</h2>
+				<a href="/Cars4rent/pages/rent/rent.xhtml" class="button">#{txtMain.indexWrSt3_2}</a>
 			</header>
 		</div>
 	</div>

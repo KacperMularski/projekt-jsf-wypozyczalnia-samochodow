@@ -64,13 +64,26 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<session-timeout>1000</session-timeout>
+		<session-timeout>10</session-timeout>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 	<mime-mapping>
 		<extension>ico</extension>
 		<mime-type>image/x-icon</mime-type>
 	</mime-mapping>
+	<mime-mapping>
+    <extension>woff</extension>
+    <mime-type>application/font-woff</mime-type>
+</mime-mapping>
+<mime-mapping>
+		<extension>jsp</extension>
+		<mime-type>application/xhtml+xml</mime-type>
+	</mime-mapping>
+<mime-mapping>
+    <extension>jsp</extension>
+    <mime-type>text/html</mime-type>
+  </mime-mapping>
+
 	<welcome-file-list>
 		<welcome-file>/public/index.xhtml</welcome-file>
 	</welcome-file-list>
@@ -78,4 +91,5 @@
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
 		<location>/pages/viewExpired.xhtml</location>
 	</error-page>
+	
 </web-app>

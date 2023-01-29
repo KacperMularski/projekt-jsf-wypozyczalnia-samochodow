@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<f:metadata>
+    <f:viewAction action="#{rentPayBB.onLoad()}" />
+</f:metadata>
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Opłać rezerwację
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li class="current"><a href="#">Wypożycz</a></li>   	
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>           
+            	<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
+        	</ul>
+    	</li>
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+
+                                        <u><h2 class="rentCarInfo"> Szczegóły rezerwacji  </h2></u>
+                                        <br/>
+                                    
+									</header>
+
+									<p:messages id="msgs" closable="true">
+            						<p:autoUpdate/>
+        							</p:messages>
+							
+                                    
+                                    <h3 class="rentCarInfo"> Data wypożyczenia: <i>
+                                    <h:outputText value="#{rentPayBB.dataWypSt} " >
+                                    	<f:convertDateTime dateStyle="short" type="date" pattern="yyyy-MM-dd" />
+                                    </h:outputText>  </i> </h3>                                           
+                                    <h3 class="rentCarInfo"> Data zwrotu: <i>
+                                    <h:outputText value="#{rentPayBB.dataZwSt} " >
+                                    	<f:convertDateTime dateStyle="short" type="date" pattern="yyyy-MM-dd" />
+                                    </h:outputText></i>  </h3>
+                                                                        
+                                    
+                                    <div class="imgBorder">
+                                    <h:graphicImage library="template" name="cars_images/#{rentPayBB.pojazd.imgUrl}"/>
+                                        
+                                    <ul>
+                                        <h1><h:outputText value="#{rentPayBB.pojazd.marka}" /><h:outputText value=" " /><h:outputText value="#{rentPayBB.pojazd.model}" /></h1>                                       
+                                        <li><i class="fa-solid fa-rocket"></i> <h:outputText value="#{rentPayBB.pojazd.pojSilnika}" />cm<sup>3</sup> </li>
+                                        <li><i class="fa-solid fa-gas-pump"></i> <h:outputText value="#{rentPayBB.pojazd.rodzPaliwa}" /> </li>
+                                        <li><i class="fa-solid fa-gears"></i> <h:outputText value="#{rentPayBB.pojazd.skrzynia}" /> </li>
+                                        <li><i class="fa-solid fa-people-group"></i> Miejsca: <h:outputText value="#{rentPayBB.pojazd.liczbaMiejsc}" /> </li>
+                                        <h2> Cena za dobę: <h:outputText value="#{rentPayBB.pojazd.cenaDoba}" />zł </h2>                                      
+
+                                    </ul>
+                                        
+                                    </div>
+                                    <br/>
+                                        
+                                       
+                                  
+                                    <h3> Wartość rezerwacji:</h3> <h3><i><h:outputText value="#{rentPayBB.liczbaDni}" /> x 
+                                    <h:outputText value="#{rentPayBB.pojazd.cenaDoba}" /> </i> </h3>
+                                    <hr style="height: 2px; background: gray; border: 0px;"/> 
+                                    <h3>Do zapłacenia: <i><h:outputText value="#{rentPayBB.wartosc}" /> zł </i></h3>
+                                    <hr style="height: 2px; background: gray; border: 0px;"/> 
+                                        
+                                    <h:form>
+
+                                    	<b>Wybierz formę płatności</b><br/>
+                                         	<div class="box">                                                                                                                
+                                                           
+                                            	<h:selectOneMenu value="#{rentPayBB.platnosc}">										              												
+      												<f:selectItem itemValue="Przelew" itemLabel="Przelew"/>
+  													<f:selectItem itemValue="PayU" itemLabel="PayU"/>
+   													<f:selectItem itemValue="Blik" itemLabel="Blik"/>
+													<f:selectItem itemValue="PayPal" itemLabel="PayPal"/> 												 				
+ 												 </h:selectOneMenu>
+                                                        
+                                             </div>
+                                             <br/>
+
+                                             <div class="row gtr-50">
+                            
+                                              	<div class="col-12">
+                                                	<ul class="actions">
+                                                    	<li><h:commandButton value="Zapłać" action="#{rentPayBB.doSave()}" /></li>                                                               
+                                                    </ul>
+                                              	</div>
+
+                                             </div>
+                                    </h:form>
+                
+                                </article>
+
+                            </div>                       
+                        </div>
+			</section>		
+		
+	</ui:define>
+	
+</ui:composition>
+
+</html>

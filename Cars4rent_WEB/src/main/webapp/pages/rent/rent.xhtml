@@ -4,7 +4,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 <ui:composition template="/templates/main-template.xhtml">
 
@@ -15,18 +16,22 @@
 	<ui:define name="end">
 		Wszelkie prawa zastrzeżone
 	</ui:define>
-	
-	
-	
+			
 	<ui:define name="nav-menu">
 	
 		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
-    	<li class="current"><a href="#">Wypożycz</a></li>
-    	<li class="current"></li>
+    	<li class="current"><a href="#">Wypożycz</a></li> 
+    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>  	
     	<li>
         	<a href="#">Rejestracja</a>
-        	<ul>           
-            	<li><a href="#">Zarejestruj</a></li>
+        	<ul>                       	
+				<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
         	</ul>
     	</li>
 
@@ -34,9 +39,189 @@
 	
 	<ui:define name="content">					
 		
-		<h1> Nasza oferta </h1>	
-		<h2>Strona w budowie</h2>
-		<h3>Dostęp PUBLIC</h3>
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+						
+							<article>
+									<header>
+                                        <div class="window"> 
+
+                                            <div class="window-text">
+                                                <b> Rezerwacje:    <i class="fa-solid fa-square-phone"></i> 675-875-674  
+                                                <i class="fa-solid fa-square-envelope"></i>  kontakt@racingcars.pl
+                                                </b> 
+                                            </div>
+
+                                        </div>
+									                                   
+									</header>
+                                    <br/><br/>
+									
+							</article>
+						</div>
+						
+						<div class="row gtr-200">
+							<div class="col-4 col-12-narrower">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+
+										<section>
+										
+										<h:form id="formParams">
+                                            <div class="form-border">
+                                                <h3>Wypełnij dane rezerwacji</h3>                                             
+                                                <b>Miejsce rezerwacji</b>
+                                                 
+                                                <div class="box">  
+                                                                                                  										
+                                                <h:selectOneMenu value="#{rentSearchBB.placowka}">										              												
+      												<f:selectItem itemValue="1" itemLabel="Dąbrowa Górnicza, ul.Sienkiewicza 2"/>
+  													<f:selectItem itemValue="2" itemLabel="Sosnowiec, ul.Krzywa 5"/>
+   													<f:selectItem itemValue="3" itemLabel="Katowice, ul.Piłsudskiego 22"/>
+													<f:selectItem itemValue="4" itemLabel="Warszawa, ul.Złota 13"/>
+ 												 	<f:selectItem itemValue="5" itemLabel="Poznań, ul.Korzenna 2"/>
+ 												 </h:selectOneMenu>
+ 												 
+                                                </div>     
+
+                                        		<br/>
+                                                                                              
+                                                <b>Data odbioru:</b>
+                                                <div class="row gtr-50">                                              
+                                                
+                                                    <div class="col-6 col-12-mobilep">
+                                                    	<h:inputText id="dataWyp" value="#{rentSearchBB.dataWyp}" required="true" 
+                                                    	requiredMessage="podaj datę wypożyczenia" 
+                                                    	converterMessage="Proszę wprowadzić poprawną datę wypożyczenia (yyyy-mm-dd)">  
+  														 <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd"/>  
+														</h:inputText>
+														<p:watermark for="dataWyp" value="yyyy-mm-dd"  id="placeholder1"  />  
+                                                    </div>
+                                                
+
+                                                </div><br/>
+                                                <b>Data zwrotu:</b>
+                                                <div class="row gtr-50">
+                                              
+                                                    <div class="col-6 col-12-mobilep">
+                                                       <h:inputText id="dataZw" value="#{rentSearchBB.dataZw}" required="true" requiredMessage="podaj datę zwrotu" converterMessage="Proszę wprowadzić poprawną datę zwrotu (yyyy-mm-dd)">  
+  														 <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd"/>  
+														</h:inputText>
+														<p:watermark for="dataZw" value="yyyy-mm-dd"  id="placeholder2"  />  
+                                                    </div>
+                                                                                               
+                                                </div><br/> 
+
+                                                <div class="row gtr-50">
+                        
+                                                    <div class="col-12">
+                                                        <ul class="actions">
+                                                            <li>
+                                                            	<h:commandButton value="Wyszukaj samochód" actionListener="#{rentSearchBB.getList()}">                                                         		
+                                                            		<f:ajax execute="@form" render="cars" />
+                                                            	</h:commandButton>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div><br/>
+
+
+										<div class="form-border">
+
+                                            <h3>Filtry</h3>
+
+                                                <b> Cena </b> <br/>
+                                                        
+                                                        
+                                                   <p:selectOneRadio id="console" value="#{rentSearchBB.cenaSort}">
+														<f:selectItem itemLabel="Rosnąco" itemValue="ASC"/>																												
+												   		<f:selectItem itemLabel="Malejąco" itemValue="DESC"/>
+												   		<f:ajax execute="@form" listener="#{rentSearchBB.getList()}" render="cars" event="valueChange" />														            
+												   </p:selectOneRadio>  
+												   											                                                                                                                                                              
+                                                                                                          
+                                                <b> Skrzynia biegów </b> <br/>                                               
+                                                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">                                                      
+                                                	<p:selectBooleanCheckbox value="#{rentSearchBB.automatSort}" itemLabel="Automatyczna">
+                                                		<f:ajax execute="@form" listener="#{rentSearchBB.getList()}" render="cars" event="valueChange" />  
+                                                	</p:selectBooleanCheckbox>
+                                                	<p:selectBooleanCheckbox value="#{rentSearchBB.manualSort}" itemLabel="Manualna">
+                                                		<f:ajax execute="@form" listener="#{rentSearchBB.getList()}" render="cars" event="valueChange" />
+                                                	</p:selectBooleanCheckbox>
+                                                	   								 
+                                                    </h:panelGrid>                                                          
+                                                 <br/>
+                                                                                                        
+
+                                                <b> Rodzaj paliwa </b> <br/> 
+													<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">     
+                                                	<p:selectBooleanCheckbox value="#{rentSearchBB.benzynaSort}" itemLabel="Benzyna">
+                                                		<f:ajax execute="@form" listener="#{rentSearchBB.getList()}" render="cars" event="valueChange" /> 
+                                                	</p:selectBooleanCheckbox>
+                                                	<p:selectBooleanCheckbox value="#{rentSearchBB.dieselSort}" itemLabel="Diesel">
+                                                		<f:ajax execute="@form" listener="#{rentSearchBB.getList()}" render="cars" event="valueChange" /> 
+                                                	</p:selectBooleanCheckbox>
+                                                     </h:panelGrid>   
+
+                                             	<br/>
+                                             	
+                                             	</div>                                                
+                                            </h:form>	                                   
+									</section>
+									</div>
+								</div>
+								
+								<div class="col-8  col-12-narrower imp-narrower">
+									<div id="content">
+
+										<article>
+											<header>																						
+        										       									
+												<p:messages id="msgs" closable="true">
+            									<p:autoUpdate/>
+        										</p:messages>        										        								        								      										
+        										
+        										
+        										<h:form id="cars">
+        										<ui:repeat var="car" value="#{rentSearchBB.list}" varStatus="status" rendered="#{rentSearchBB.checkForm == true}">
+        																						       										
+                                        			<p:link id="carLink" href="#{rentSearchBB.doRent(car)}" target="_blank">
+                                        				<div class="imgBorder">
+                                        
+                                        
+                                        				<h:graphicImage library="template" name="cars_images/#{car.imgUrl}"/>
+                                        
+                                        				<ul>
+                                        					<h1><h:outputText value="#{car.marka}" /><h:outputText value=" " /><h:outputText value="#{car.model}" /></h1>                                       
+                                        					<li><i class="fa-solid fa-rocket"></i> <h:outputText value="#{car.pojSilnika}" />cm<sup>3</sup> </li>
+                                        					<li><i class="fa-solid fa-gas-pump"></i> <h:outputText value="#{car.rodzPaliwa}" /> </li>
+                                        					<li><i class="fa-solid fa-gears"></i> <h:outputText value="#{car.skrzynia}" /> </li>
+                                        					<li><i class="fa-solid fa-people-group"></i> Miejsca: <h:outputText value="#{car.liczbaMiejsc}" /> </li>
+                                        				<h2> Cena za dobę: <h:outputText value="#{car.cenaDoba}" />zł </h2>
+
+                                        				</ul>
+                                        
+                                        				</div>  
+                                       			 	</p:link>                                      
+                                        			<br/>
+                    
+                                   				</ui:repeat> 
+                                   				</h:form>
+                                          																					
+											</header>
+										</article>
+									</div>
+								</div>
+								
+							</div>																						
+				</div>
+		</section>
 	
 	</ui:define>
 	

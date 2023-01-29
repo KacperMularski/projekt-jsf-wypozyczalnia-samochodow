@@ -8,30 +8,34 @@
 	<ui:insert name="header">
 	
 		<!--  Logo  -->
-		<h1><a href="/Cars4rent/public/index.xhtml" id="logo"> <em>Wypożyczalnia samochodów</em> Cars4Rent</a></h1>
+		<h1><a href="/Cars4rent/public/index.xhtml" id="logo"> <em>#{txtMain.headerName}</em> Cars4Rent</a></h1>
 			
 		<!-- menu -->
 		<div id="nav">
 			<ul>
 				<ui:insert name="nav-menu">...</ui:insert>			
 				
-				<li>
+				<li>						
     				<b><h:outputText rendered="#{remoteClient.details.login != null and remoteClient.details.rola == 'user'}"  
-    				value="Zalogowany: #{remoteClient.details.login}" /></b>
+    				value="#{txtMain.headerMenuLoggedUser}: #{remoteClient.details.login}" /></b>
     				<b><h:outputText rendered="#{remoteClient.details.login != null and remoteClient.details.rola == 'admin'}"  
-    				value="Zalogowany: #{remoteClient.details.login} (ADMIN)"/></b>
+    				value="#{txtMain.headerMenuLoggedUser}: #{remoteClient.details.login} (ADMIN)"/></b>
+    				<h:form style="display:inline;">
+    					<h:commandButton rendered="#{remoteClient.details.login != null and remoteClient.details.rola == 'admin'}" 
+    					value="#{txtMain.headerMenuAdminPage}" action="/pages/admin/clientTableList?faces-redirect=true" />						
+					</h:form>
 				</li>
 										 	
     			<li>
     				<h:form style="display:inline;">
-    					<h:commandButton rendered="#{remoteClient.details.login != null}" value="Profil" action="/pages/profile/profileInfo?faces-redirect=true" />						
+    					<h:commandButton rendered="#{remoteClient.details.login != null}" value="#{txtMain.headerMenuProfile}" action="/pages/profile/profileInfo?faces-redirect=true" />						
 					</h:form>
 					
 					<h:form style="display:inline;">
-						<h:commandButton rendered="#{remoteClient.details.login != null}" value="Wyloguj" action="#{loginBB.doLogout()}" />	
+						<h:commandButton rendered="#{remoteClient.details.login != null}" value="#{txtMain.headerMenuLogout}" action="#{loginBB.doLogout()}" />	
 					</h:form>
 			
-					<b><u><h:outputText rendered="#{remoteClient.details.login == null}"  value="Użytkownik niezalogowany" /></u></b>			
+					<b><u><h:outputText rendered="#{remoteClient.details.login == null}"  value="#{txtMain.headerMenuNoLoged}" /></u></b>			
     			</li>
 			</ul>
 		</div>

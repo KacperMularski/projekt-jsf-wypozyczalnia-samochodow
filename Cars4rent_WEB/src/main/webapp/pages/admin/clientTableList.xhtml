@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Admin - Edytuj Klienta
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li class="current"><h:link value="Klient"/></li>   	
+     	<li><h:link value="Pracownik" outcome="/pages/admin/employeeTableList?faces-redirect=true" /></li>
+    	
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Tabela klienci</h2>										
+										
+									</header>  
+									
+									<section class="col-6 col-12-narrower">
+										<h:form>
+											<div class="row gtr-50">
+												<div class="col-6 col-12-mobilep">
+													<p:inputText id="surname" value="#{clientListBB.nazwisko}" >
+														<p:ajax execute="@form" listener="#{clientListBB.init()}" update="clients" event="input" />
+													</p:inputText>
+														<p:watermark for="surname" value="Nazwisko"  id="placeholder1"  />
+														
+												</div>
+																																											
+											</div>											
+										</h:form>
+										
+										<br/>																		
+																																							
+										
+											
+											<h:form id="clients">
+												<p:dataTable var="client" value="#{clientListBB.lazyModelKlient}" varStatus="status" 
+												showGridlines="true" 
+												paginator="true" rows="5" 
+                                     			paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} {PageLinks}"
+                                     			lazy="true">
+											
+													<p:column headerText="ID">
+														<h:outputText value="#{client.idKlienta}" />
+													</p:column>
+													<p:column headerText="Konto">
+														<h:outputText value="#{client.konto.idKonta}" />
+													</p:column>
+													<p:column headerText="Imie">
+														<h:outputText value="#{client.imie}" />
+													</p:column>
+													<p:column headerText="Nazwisko">
+														<h:outputText value="#{client.nazwisko}" />
+													</p:column>
+													<p:column headerText="Data urodzenia">
+														<h:outputText value="#{client.dataUr}" />
+													</p:column>												
+													<p:column headerText="Nr prawa jazdy">
+														<h:outputText value="#{client.nrPrJazdy}" />
+													</p:column>
+													<p:column headerText="Nr Telefonu">
+														<h:outputText value="#{client.nrTel}" />
+													</p:column>
+													<p:column headerText="Aktywny">
+														<h:outputText value="#{client.aktywny}" />
+													</p:column>
+													<p:column headerText="Uwagi">
+														<h:outputText value="#{client.uwagi}" />
+													</p:column>	
+													<p:column headerText="Opcje" width="140">
+														<h:commandButton value="Edytuj" action="#{clientListBB.editPerson(client)}" />
+													</p:column>
+																																																																																			
+												</p:dataTable>
+												
+				
+											</h:form>	
+																															
+										
+																																																
+									</section>
+									                                																										
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

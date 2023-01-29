@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Wypożyczono pojazd
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li class="current"><a href="#">Wypożycz</a></li>   	
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>           
+            	<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
+        	</ul>
+    	</li>
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+								<article>
+									<header>
+
+									<h2> Rezerwacja powiodła się pomyślnie !</h2> <br/>
+									<p> Samochód jest gotowy do odbioru </p>
+                                   										
+									</header>
+
+								</article>
+
+						</div>
+					</div>
+				</section>		
+		
+	</ui:define>
+	
+</ui:composition>
+
+</html>

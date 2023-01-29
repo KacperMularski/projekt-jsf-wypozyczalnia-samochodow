@@ -36,9 +36,9 @@ public class Konto implements Serializable {
 	@OneToMany(mappedBy="konto")
 	private List<Klient> klients;
 
-	//bi-directional many-to-one association to Pracownik
-	@OneToMany(mappedBy="konto")
-	private List<Pracownik> pracowniks;
+	//bi-directional one-to-one association to Pracownik
+	@OneToOne(mappedBy="konto")
+	private Pracownik pracownik;
 
 	public Konto() {
 	}
@@ -121,26 +121,12 @@ public class Konto implements Serializable {
 		return klient;
 	}
 
-	public List<Pracownik> getPracowniks() {
-		return this.pracowniks;
+	public Pracownik getPracownik() {
+		return this.pracownik;
 	}
 
-	public void setPracowniks(List<Pracownik> pracowniks) {
-		this.pracowniks = pracowniks;
-	}
-
-	public Pracownik addPracownik(Pracownik pracownik) {
-		getPracowniks().add(pracownik);
-		pracownik.setKonto(this);
-
-		return pracownik;
-	}
-
-	public Pracownik removePracownik(Pracownik pracownik) {
-		getPracowniks().remove(pracownik);
-		pracownik.setKonto(null);
-
-		return pracownik;
+	public void setPracownik(Pracownik pracownik) {
+		this.pracownik = pracownik;
 	}
 
 }

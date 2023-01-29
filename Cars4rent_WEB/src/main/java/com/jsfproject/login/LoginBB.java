@@ -1,14 +1,13 @@
 package com.jsfproject.login;
 
-import java.rmi.Remote;
-import java.util.List;
 
+import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.simplesecurity.RemoteClient;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,8 +18,18 @@ import jsfproject.entities.Konto;
 @Named
 @RequestScoped
 public class LoginBB {
+	
+	
+	FacesContext ctx = FacesContext.getCurrentInstance();
+	private ResourceBundle textLoginErr;
+	
+	@PostConstruct
+	public void postConstruct() {
+				
+		textLoginErr = ResourceBundle.getBundle("resources.textLoginErr", ctx.getViewRoot().getLocale());
+	}
+	
 	private static final String PAGE_MAIN = "/public/index?faces-redirect=true";
-	private static final String PAGE_LOGIN = "/pages/login";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String login;
@@ -46,20 +55,18 @@ public class LoginBB {
 	KontoDAO kontoDAO;
 
 	public String doLogin() {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-
+					
 		// 1. verify login and password - get User from "database"
 		Konto konto = kontoDAO.getLoginData(login, haslo);
 
 		// 2. if bad login or password - stay with error info
 		if (konto == null) {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Niepoprawny login lub hasło", null));
+					textLoginErr.getString("invalidLogPass"), null));
 			return PAGE_STAY_AT_THE_SAME;
 			
 		}
 				
-
 		// 3. if logged in: get User roles, save in RemoteClient and store it in session
 		
 		RemoteClient<Konto> client = new RemoteClient<Konto>(); //create new RemoteClient
@@ -81,9 +88,11 @@ public class LoginBB {
 	public String doLogout(){
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(true);
+		
 		//Invalidate session
 		// - all objects within session will be destroyed
 		// - new session will be created (with new ID)
+		
 		session.invalidate();
 		return PAGE_MAIN;
 	}

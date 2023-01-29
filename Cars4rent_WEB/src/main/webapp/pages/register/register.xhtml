@@ -9,25 +9,25 @@
 <ui:composition template="/templates/main-template.xhtml">
 
 	<ui:define name="title">
-		Rejestracja
+		#{txtMain.registerTitle}
 	</ui:define>
 	
 	<ui:define name="end">
-		Wszelkie prawa zastrzeżone
+		#{txtMain.footerRights}
 	</ui:define>
 	
 	
 	
 	<ui:define name="nav-menu">
 	
-		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
-    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
-    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
+		<li><h:link value="#{txtMain.indexMenuMainPage}" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuRent}" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuOffer}" outcome="/public/offer?faces-redirect=true" /></li>
     	<li class="current">
-    	<a href="#">Rejestracja</a>
+    	<a href="#">#{txtMain.indexMenuRegistration}</a>
         	<ul>                       	
 				<li>
-					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+					<h:link value="#{txtMain.indexMenuLogin}" outcome="/pages/login?faces-redirect=true" />
             	</li>           	
           	</ul>
         </li>
@@ -43,7 +43,7 @@
 
 								<article>
 									<header>
-										<h2>Rejestracja</h2>
+										<h2>#{txtMain.registerText}</h2>
 										
 									</header>
 
@@ -53,16 +53,20 @@
 											<div class="row gtr-50">
 												<div class="col-6 col-12-mobilep">
 													
-													<h:inputText id="login" value="#{registerBB.login}" required="true" requiredMessage="podaj login"/>
-													<p:watermark for="login" value="Login"  id="placeholder1"  />
+													<h:inputText id="login" value="#{registerBB.login}" required="true" 
+													requiredMessage="#{txtMain.registerFormValueLoginRe}" validatorMessage="#{txtMain.registerFormValueLoginVa}">
+														<f:validateLength minimum="5" maximum="25"/>
+													</h:inputText>
 													<p:message for="login"/>
+													<p:watermark for="login" value="#{txtMain.registerFormValueLogin}"  id="placeholder1"  />
+													
 													
 												</div>
 
 												<div class="col-6 col-12-mobilep">
 													
-													<h:inputText id="email" value="#{registerBB.email}" required="true" requiredMessage="podaj e-mail"/>
-													<p:watermark for="email" value="E-mail"  id="placeholder2"  />
+													<h:inputText id="email" value="#{registerBB.email}" required="true" requiredMessage="#{txtMain.registerFormValueEmailRe}"/>
+													<p:watermark for="email" value="#{txtMain.registerFormValueEmail}"  id="placeholder2"  />
 													<p:message for="email"/>
 													
 												</div>
@@ -71,8 +75,11 @@
 												<div class="col-6 col-12-mobilep">
 												
 													<h:inputSecret id="pass" value="#{registerBB.haslo}"
-													required="true"	requiredMessage="podaj hasło"/>
-													<p:watermark for="pass" value="Hasło"  id="placeholder3"  />
+													required="true"	requiredMessage="#{txtMain.registerFormValuePassRe}" 
+													validatorMessage="#{txtMain.registerFormValuePassVa}">
+														<f:validateLength minimum="8" maximum="40"/>
+													</h:inputSecret>
+													<p:watermark for="pass" value="#{txtMain.registerFormValuePass}"  id="placeholder3"  />
 													<p:message for="pass"/>	
 													
 												</div>
@@ -81,64 +88,85 @@
 												<div class="col-6 col-12-mobilep">
 												
 													<h:inputSecret id="pass_rep" value="#{registerBB.haslo_rep}"
-													required="true"	requiredMessage="podaj hasło ponownie"/>
-													<p:watermark for="pass_rep" value="Powtórz hasło"  id="placeholder4"  />
+													required="true"	requiredMessage="#{txtMain.registerFormValuePassAgainRe}"/>
+													<p:watermark for="pass_rep" value="#{txtMain.registerFormValuePassAgain}"  id="placeholder4"  />
 													<p:message for="pass_rep"/>
 													
 												</div>
 												
 												<div class="col-6 col-12-mobilep">
 												
-													<h:inputText id="imie" value="#{registerBB.imie}" required="true" requiredMessage="podaj imię"/>
-													<p:watermark for="imie" value="Imię"  id="placeholder5"  />
+													<h:inputText id="imie" value="#{registerBB.imie}" required="true" 
+													requiredMessage="#{txtMain.registerFormValueNameRe}" 
+													validatorMessage="#{txtMain.registerFormValueNameVa}">
+														<f:validateLength maximum="30"/>
+													</h:inputText>
+													<p:watermark for="imie" value="#{txtMain.registerFormValueName}"  id="placeholder5"  />
 													<p:message for="imie"/>
 													
 												</div>
 												<div class="col-6 col-12-mobilep">
 												
-													<h:inputText id="nazwisko" value="#{registerBB.nazwisko}" required="true" requiredMessage="podaj nazwisko"/>
-													<p:watermark for="nazwisko" value="Nazwisko"  id="placeholder6"  />
+													<h:inputText id="nazwisko" value="#{registerBB.nazwisko}" required="true" 
+													requiredMessage="#{txtMain.registerFormValueSurnameRe}" 
+													validatorMessage="#{txtMain.registerFormValueSurnameVa}">
+														<f:validateLength maximum="40"/>
+													</h:inputText>
+													<p:watermark for="nazwisko" value="#{txtMain.registerFormValueSurname}"  id="placeholder6"  />
 													<p:message for="nazwisko"/>
 													
 												</div>
 											
 												<div class="col-6 col-12-mobilep">
 												
-													<h:inputText id="nr_pr_jazdy" value="#{registerBB.nr_pr_jazdy}" required="true" requiredMessage="podaj numer prawa jazdy"/>
-													<p:watermark for="nr_pr_jazdy" value="Numer prawa jazdy"  id="placeholder7"  />
+													<h:inputText id="nr_pr_jazdy" value="#{registerBB.nr_pr_jazdy}" required="true" 
+													requiredMessage="#{txtMain.registerFormValueLicensNrRe}" 
+													validatorMessage="#{txtMain.registerFormValueLicensNrVa}"
+													converterMessage="#{txtMain.registerFormValueLicensNrCo}" >
+														<f:validateLength minimum="11" maximum="11"/>														
+													</h:inputText>
+													<p:watermark for="nr_pr_jazdy" value="#{txtMain.registerFormValueLicensNr}"  id="placeholder7"  />
 													<p:message for="nr_pr_jazdy"/>	
 
 												</div>
 
                                                 <div class="col-6 col-12-mobilep">
                                                 
-                                                	<h:inputText id="nr_tel" value="#{registerBB.nr_tel}" required="true" requiredMessage="podaj numer telefonu"/>
-													<p:watermark for="nr_tel" value="Numer telefonu"  id="placeholder8"  />
+                                                	<h:inputText id="nr_tel" value="#{registerBB.nr_tel}" required="true" 
+                                                	requiredMessage="#{txtMain.registerFormValuePhoneNrRe}"
+                                                	validatorMessage="#{txtMain.registerFormValuePhoneNrVa}"
+													converterMessage="#{txtMain.registerFormValuePhoneNrCo}">
+														<f:validateLength minimum="9" maximum="9"/>	
+													</h:inputText>
+													<p:watermark for="nr_tel" value="#{txtMain.registerFormValuePhoneNr}"  id="placeholder8"  />
 													<p:message for="nr_tel"/>
 														
 												</div>
 
                                                 <div class="col-6 col-12-mobilep">
                                                 
-													<h:inputText id="data_ur" value="#{registerBB.data_ur}" required="true" requiredMessage="podaj datę urodzenia" converterMessage="Proszę wprowadzić poprawną datę (yyyy-mm-dd)">  
+													<h:inputText id="data_ur" value="#{registerBB.data_ur}" required="true" 
+													requiredMessage="#{txtMain.registerFormValueBirthdateRe}" 
+													converterMessage="#{txtMain.registerFormValueBirthdateCo}">  
   														 <f:convertDateTime dateStyle="short" pattern="yyyy-MM-dd"/>  
 													</h:inputText>
-													<p:watermark for="data_ur" value="Data urodzenia"  id="placeholder9"  />
+													<p:watermark for="data_ur" value="#{txtMain.registerFormValueBirthdate}"  id="placeholder9"  />
 													<p:message for="data_ur"/>	
                                                     
 												</div>
-												
-												<h:outputText value="#{registerBB.data_ur}"/> 
-											
+																																
 												<div class="col-12">
 													<ul class="actions">
-														<li><h:commandButton value="Zarejestruj" action="#{registerBB.doRegister()}" update="msg" /></li>
+														<li>
+															<h:commandButton value="Zarejestruj" action="#{registerBB.doRegister()}" >
+																<f:ajax execute="@form" render="msgs" />
+															</h:commandButton>
+														</li>
 													</ul>
 												</div>
 																				
 											</div>
-											
-											
+																						
 											<p:messages id="msgs" closable="true">
             									<p:autoUpdate/>
         									</p:messages>

@@ -17,16 +17,21 @@
 		Wszelkie prawa zastrzeżone
 	</ui:define>
 	
-	
-	
 	<ui:define name="nav-menu">
 	
 		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
-    	<li><a href="#">Wypożycz</a></li>   	
+    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
     	<li>
         	<a href="#">Rejestracja</a>
-        	<ul>           
-            	<li><a href="#">Zarejestruj</a></li>
+        	<ul>                       	
+				<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
         	</ul>
     	</li>
 
@@ -43,26 +48,35 @@
 										<h2>Dane konta</h2> <br/>
 										
 									</header>                                  
-
+									
+									
+									<c:set var = "user" scope="session" value="user"/>
+                                    <c:set var = "admin" scope="session" value="admin"/>
+                                    
                                     <table class="pure-table pure-table-bordered">
 
 										<thead>
 											<tr> 
 												<td colspan="3" align="center">
-													<a href="" class="button">Edytuj</a> 
-													<a href="" class="button">Zmień hasło</a>
-													<a href="" class="button">Wypożyczenia</a>
+													<c:if test="#{remoteClient.details.rola eq user}">
+														<a href="/Cars4rent/pages/profile/profileEdit.xhtml" class="button">Edytuj profil</a> 											
+														<a href="/Cars4rent/pages/profile/rentHistory.xhtml" class="button">Wypożyczenia</a>
+													</c:if>
+													<a href="/Cars4rent/pages/profile/passwordChange.xhtml" class="button">Zmień hasło</a>
 												</td> 
 											</tr>
 										</thead>
+										
+										<p:messages id="msgs" closable="true">
+            								<p:autoUpdate/>
+        								</p:messages>
+							
 
-                                        <tbody>
-                                        	<c:set var = "user" scope="session" value="user"/>
-                                        	<c:set var = "admin" scope="session" value="admin"/>
+                                        <tbody>                                 	
                                         	
                                         	<c:if test="#{remoteClient.details.rola eq user}">
-	                                            <tr><td><h3>Login:</h3></td> <td><b><h:outputText value="#{remoteClient.details.login}"/></b></td></tr>                                       
-	                                            <tr class="pure-table-odd"><td><h3>E-mail:</h3></td> <td><b><h:outputText value="#{remoteClient.details.email}"/></b></td></tr>
+	                                            <tr><td><h3>Login:</h3></td> <td><b><h:outputText value="#{profileInfoBB.klient.konto.login}"/></b></td></tr>                                       
+	                                            <tr class="pure-table-odd"><td><h3>E-mail:</h3></td> <td><b><h:outputText value="#{profileInfoBB.klient.konto.email}"/></b></td></tr>
 	                                            <tr><td><h3>Imie:</h3></td><td> <b><h:outputText value="#{profileInfoBB.klient.imie}"/></b></td></tr>
 	                                            <tr class="pure-table-odd"><td><h3>Nazwisko:</h3></td><td> <b><h:outputText value="#{profileInfoBB.klient.nazwisko}"/></b></td></tr>
 	                                            <tr><td><h3>Data urodzenia:</h3></td><td>  <b><h:outputText value="#{profileInfoBB.klient.dataUr}"/></b></td></tr>
@@ -76,6 +90,13 @@
 	                                           <tr><td><h3>Login:</h3></td> <td><b><h:outputText value="#{remoteClient.details.login}"/></b></td></tr>                                       
 	                                           <tr class="pure-table-odd"><td><h3>E-mail:</h3></td> <td><b><h:outputText value="#{remoteClient.details.email}"/></b></td></tr> 
 	                                           <tr><td><h3>Imie:</h3></td><td> <b><h:outputText value="#{profileInfoBB.pracownik.imie}"/></b></td></tr>
+	                                           <tr class="pure-table-odd"><td><h3>Nazwisko:</h3></td><td> <b><h:outputText value="#{profileInfoBB.pracownik.nazwisko}"/></b></td></tr>
+	                                           <tr><td><h3>Data urodzenia:</h3></td><td>  <b><h:outputText value="#{profileInfoBB.pracownik.dataUr}"/></b></td></tr>
+	                                           <tr class="pure-table-odd"><td><h3>Miasto:</h3></td><td>  <b><h:outputText value="#{profileInfoBB.pracownik.miasto}"/></b></td></tr>
+	                                           <tr><td><h3>Ulica/nr domu:</h3></td><td><b><h:outputText value="#{profileInfoBB.pracownik.ulicaNrDomu}"/></b></td></tr>	 
+	                                           <tr><td><h3>Kod pocztowy:</h3></td><td><b><h:outputText value="#{profileInfoBB.pracownik.kodPocz}"/></b></td></tr>	
+	                                           <tr><td><h3>Telefon:</h3></td><td><b><h:outputText value="#{profileInfoBB.pracownik.nrTel}"/></b></td></tr>
+	                                           <tr><td><h3>Data zatrudnienia:</h3></td><td><b><h:outputText value="#{profileInfoBB.pracownik.dataZatrud}"/></b></td></tr>	                                       
                                             </c:if>
                                        </tbody>
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Admin - Edytuj pracownika
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="Klient" outcome="/pages/admin/clientTableList?faces-redirect=true"/></li>   	   	
+     	<li class="current"><h:link value="Pracownik"/></li>
+    	
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Tabela pracownicy</h2>										
+										
+									</header>  
+									
+									<section class="col-6 col-12-narrower">
+										<h:form>
+											<div class="row gtr-50">
+												<div class="col-6 col-12-mobilep">
+													<p:inputText id="surname" value="#{employeeListBB.nazwisko}" >
+														<p:ajax execute="@form" listener="#{employeeListBB.init()}" update="employees" event="input" />
+													</p:inputText>
+														<p:watermark for="surname" value="Nazwisko"  id="placeholder15"  />													
+												</div>	
+																																																					
+											</div>											
+										</h:form>
+										
+										<br/>																																						
+										
+										<h:form id="employees">
+										
+											<p:dataTable var="employee" value="#{employeeListBB.lazyModelPracownik}" varStatus="status"
+											showGridlines="true" 
+											paginator="true" rows="5" 
+                                     		paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {NextPageLink} {PageLinks}"
+                                     		lazy="true">
+                                     		
+	                                     		<p:column headerText="ID" width="10">
+													<h:outputText value="#{employee.idPracownika}" />
+												</p:column>
+												<p:column headerText="ID K" width="20">
+													<h:outputText value="#{employee.konto.idKonta}" />
+												</p:column>
+												<p:column headerText="ID P" width="20">
+													<h:outputText value="#{employee.placowka.idPlacowki}" />
+												</p:column>												
+												<p:column headerText="Email" width="180">
+													<h:outputText value="#{employee.konto.email}" />
+												</p:column>
+												<p:column headerText="Imie">
+													<h:outputText value="#{employee.imie}" />
+												</p:column>
+												<p:column headerText="Nazwisko" width="80">
+													<h:outputText value="#{employee.nazwisko}" />
+												</p:column>
+												<p:column headerText="Data urodzenia" width="80"> 
+													<h:outputText value="#{employee.dataUr}" />
+												</p:column>
+												<p:column headerText="Miasto" width="80">
+													<h:outputText value="#{employee.miasto}" />
+												</p:column>
+												<p:column headerText="Ulica/Nr domu" width="80">
+													<h:outputText value="#{employee.ulicaNrDomu}" />
+												</p:column>
+												<p:column headerText="Kod pocztowy" width="80">
+													<h:outputText value="#{employee.kodPocz}" />
+												</p:column>
+												<p:column headerText="Telefon" width="100">
+													<h:outputText value="#{employee.nrTel}" />
+												</p:column>
+												<p:column headerText="Zatrudnienie" width="90">
+													<h:outputText value="#{employee.dataZatrud}" />
+												</p:column>
+												<p:column headerText="Opcje" width="140">
+													<h:commandButton value="Edytuj"	action="#{employeeListBB.editEmployee(employee)}" />
+												</p:column>
+																								
+											</p:dataTable>	
+																														
+										</h:form>
+																																																
+									</section>
+									                                																										
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>

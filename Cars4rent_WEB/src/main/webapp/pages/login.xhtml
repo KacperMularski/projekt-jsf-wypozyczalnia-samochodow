@@ -9,24 +9,24 @@
 <ui:composition template="/templates/main-template.xhtml">
 
 	<ui:define name="title">
-		Logowanie
+		#{txtMain.loginTitle}
 	</ui:define>
 	
 	<ui:define name="end">
-		Wszelkie prawa zastrzeżone
+		#{txtMain.footerRights}
 	</ui:define>
 	
 	
 	
 	<ui:define name="nav-menu">
 	
-		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
-    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
-    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
+		<li><h:link value="#{txtMain.indexMenuMainPage}" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuRent}" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="#{txtMain.indexMenuOffer}" outcome="/public/offer?faces-redirect=true" /></li>
     	<li class="current">
-        	<a href="#">Rejestracja</a>
+        	<a href="#">#{txtMain.indexMenuRegistration}</a>
         	<ul>           
-            	<li><h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" /></li>
+            	<li><h:link value="#{txtMain.indexMenuRegister}" outcome="/pages/register/register?faces-redirect=true" /></li>
         	</ul>
     	</li>
 
@@ -39,7 +39,7 @@
 				
 					<article>
 						<header>
-							<h2>Logowanie</h2>										
+							<h2>#{txtMain.loginText}</h2>										
 						</header>
 
 						
@@ -48,8 +48,8 @@
 								
 									<div class="col-6 col-12-mobilep">													
 							    	
-										<h:inputText id="login" value="#{loginBB.login}" required="true" requiredMessage="podaj login"/>
-										<p:watermark for="login" value="Login"  id="placeholder1"  />
+										<h:inputText id="login" value="#{loginBB.login}" required="true" requiredMessage="#{txtMain.loginFormValueLoginRe}"/>
+										<p:watermark for="login" value="#{txtMain.loginFormValueLogin}"  id="placeholder1"  />
 										<p:message for="login"/>	
 										
 																					
@@ -59,8 +59,8 @@
 									<div class="col-6 col-12-mobilep">
 													
 										<h:inputSecret id="pass" value="#{loginBB.haslo}"
-										required="true"	requiredMessage="podaj hasło" placeholder="Hasło"/>
-										<p:watermark for="pass" value="Hasło"  id="placeholder2"  />
+										required="true"	requiredMessage="#{txtMain.loginFormValuePasswordRe}" placeholder="Hasło"/>
+										<p:watermark for="pass" value="#{txtMain.loginFormValuePassword}"  id="placeholder2"  />
 										<p:message for="pass"/>	
 										
 									
@@ -69,7 +69,11 @@
 									<div class="col-12">
 									
 										<ul class="actions">
-											<li><h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" /></li>
+											<li>
+												<h:commandButton value="#{txtMain.loginFormSubmit}" action="#{loginBB.doLogin()}" >
+													<f:ajax execute="@form" render="msgs" />
+												</h:commandButton>
+											</li>
 										</ul>
 										
 									</div>

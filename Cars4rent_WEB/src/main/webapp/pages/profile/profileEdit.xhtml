@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<f:metadata>
+    <f:viewAction action="#{profileEditBB.onLoad()}" />
+</f:metadata>
+	
+	
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Edytuj Profil
+	</ui:define>
+	
+	<ui:define name="end">
+		Wszelkie prawa zastrzeżone
+	</ui:define>
+	
+	
+	
+	<ui:define name="nav-menu">
+	
+		<li><h:link value="Strona główna" outcome="/public/index?faces-redirect=true" /></li>
+    	<li><h:link value="Wypożycz" outcome="/pages/rent/rent?faces-redirect=true" /></li>
+    	<li><h:link value="Oferta" outcome="/public/offer?faces-redirect=true" /></li>
+    	<li>
+        	<a href="#">Rejestracja</a>
+        	<ul>                       	
+				<li>
+					<h:link value="Zaloguj" outcome="/pages/login?faces-redirect=true" />
+            	</li>
+            	
+            	<li>
+            		<h:link value="Zarejestruj" outcome="/pages/register/register?faces-redirect=true" />
+            	</li>
+        	</ul>
+    	</li>
+
+    	
+
+	</ui:define>
+	
+	<ui:define name="content">					
+		
+		<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+								<article>
+									<header>
+										<h2>Edytuj profil</h2>										
+										
+									</header>  
+									
+								<section class="col-6 col-12-narrower">
+									<h:form>
+									
+										<p:messages id="msgs" closable="true">
+            									<p:autoUpdate/>
+        								</p:messages>
+        									
+										<div class="row gtr-50">										
+																			
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-login" value="#{profileEditBB.konto.login}" required="true" 
+												requiredMessage="podaj login"
+												validatorMessage="min długość loginu 5, max długość loginu 25">
+													<f:validateLength minimum="5" maximum="25"/>	
+												</h:inputText>											
+												<p:message for="a-login"/>
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-email" value="#{profileEditBB.konto.email}" required="true" 
+												requiredMessage="podaj adres e-mail"/>												
+												<p:message for="a-email"/>
+													
+											</div>
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-imie" value="#{profileEditBB.klient.imie}" required="true" 
+												requiredMessage="podaj imie"
+												validatorMessage="max długość imienia 30">
+													<f:validateLength maximum="30"/>
+												</h:inputText>												
+												<p:message for="a-imie"/>
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-nazwisko" value="#{profileEditBB.klient.nazwisko}" required="true" 
+												requiredMessage="podaj nazwisko"
+												validatorMessage="max długość nazwiska 40">
+													<f:validateLength maximum="40"/>
+												</h:inputText>												
+												<p:message for="a-nazwisko"/>
+													
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-data" value="#{profileEditBB.klient.dataUr}" required="true" 
+												requiredMessage="podaj datę urodzenia"
+												converterMessage="niepoprawny format daty (np. 15-07-2018)">
+												<f:convertDateTime pattern="dd-MM-yyyy"/>	
+												</h:inputText>											
+												<p:message for="a-data"/>
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-numer-pr" value="#{profileEditBB.klient.nrPrJazdy}" required="true" 
+												requiredMessage="podaj nr prawa jazdy"
+												validatorMessage="numer prawa jazdy musi być 11 cyfrowy"
+												converterMessage="numer prawa jazdy musi być liczbą">													
+													<f:validateLength minimum="11" maximum="11"/>	
+												</h:inputText>											
+												<p:message for="a-numer-pr"/>	
+												
+											</div>
+											
+											<div class="col-6 col-12-mobilep">
+											
+												<h:inputText id="a-numer-tel" value="#{profileEditBB.klient.nrTel}" required="true" 
+												requiredMessage="podaj numer telefonu"/>																																				
+												<p:message for="a-numer-tel"/>	
+												
+											</div>																					
+																																
+											<div class="col-12">
+													<ul class="actions">
+														<li>
+															<h:commandButton value="Zapisz" action="#{profileEditBB.profileEdit()}"	style="margin-right: 1em;">	
+																<f:ajax execute="@form" render="msgs" />													
+															</h:commandButton>
+														</li>
+                                                        <li>
+                                                        	<h:button value="Anuluj" outcome="profileInfo" />
+                                                        </li>
+													</ul>
+												</div>
+										</div>
+									</h:form>
+								</section>								                                								
+									
+									
+								</article>
+
+						</div>
+					</div>
+				</section>
+	
+	</ui:define>
+	
+</ui:composition>
+
+</html>
